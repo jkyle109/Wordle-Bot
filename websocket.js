@@ -160,7 +160,7 @@ export const handleEvents = async (t, s, op, d) => {
           { upsert: true }
         ).then((res) => res.lastErrorObject.updatedExisting);
         console.log(isExisting);
-        if (!isExisting) {
+        if (isExisting) {
           await DiscordRequest(`/channels/${d.channel_id}/messages`, {
             method: "POST",
             body: { content: "Already read wordle" },
