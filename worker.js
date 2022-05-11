@@ -3,7 +3,7 @@ import concurrently from "concurrently";
 const { result } = concurrently(
   [
     // Commands to run
-    { command: "node app.js", name: "wordle-bot" },
+    { command: "node index.js", name: "wordle-bot" },
   ],
   {
     // Concurrently settings

@@ -6,15 +6,7 @@ import {
   LEADERBOARD_COMMAND,
   guildsHaveCommands,
 } from "./commands.js";
-import {
-  ws,
-  initWebSocket,
-  handleOPCode,
-  handleEvents,
-  handleInteractions,
-} from "./websocket.js";
-
-import { updateOneDB } from "./mongodb.js";
+import { handleInteractions } from "./websocket.js";
 
 const PORT = 3000 || process.env.PORT;
 
@@ -32,24 +24,6 @@ app.use(
 // });
 
 app.post("/interactions", handleInteractions);
-
-await initWebSocket();
-
-ws.on("message", async (data) => {
-  // Parse
-  let payload = JSON.parse(data);
-  const { t, s, op, d } = payload;
-  console.log(t, s, op, 2);
-  if (op == 0) {
-    await updateOneDB("misc", { type: "state" }, { $set: { seq: s } });
-  }
-
-  // Manage OP codes
-  handleOPCode(t, s, op, d);
-
-  //  Manage Events
-  handleEvents(t, s, op, d);
-});
 
 app.listen(PORT, async () => {
   console.log("Listening on Port: ", PORT);
