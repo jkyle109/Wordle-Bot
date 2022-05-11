@@ -6,7 +6,6 @@ import {
   getBotGuildIDs,
   OperationCode,
 } from "./util.js";
-
 import {
   InteractionType,
   InteractionResponseType,
