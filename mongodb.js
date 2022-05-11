@@ -9,6 +9,8 @@ export const db = new MongoClient(uri, {
   serverApi: ServerApiVersion.v1,
 });
 
+await db.connect();
+
 // const setDailyTTL = async () => {
 //   db.connect(async (err) => {
 //     if (err) throw err;
@@ -35,41 +37,45 @@ export const db = new MongoClient(uri, {
 // };
 
 export const getAllDB = async (name, query = {}, options = {}, sort = {}) => {
-  await db.connect();
+  // await db.connect();
   return db
     .db("wordle-bot")
     .collection(name)
     .find(query, options)
     .sort(sort)
     .toArray()
-    .finally(() => db.close());
+    .catch((err) => console.log(err));
+  // .finally(() => db.close());
 };
 
 export const getOneDB = async (name, query = {}, options = {}) => {
-  await db.connect();
+  // await db.connect();
   return db
     .db("wordle-bot")
     .collection(name)
     .findOne(query, options)
-    .finally(() => db.close());
+    .catch((err) => console.log(err));
+  // .finally(() => db.close());
 };
 
 export const insertOneDB = async (name, query, options = {}) => {
-  await db.connect();
+  // await db.connect();
   return db
     .db("wordle-bot")
     .collection(name)
     .insertOne(query, options)
-    .finally(() => db.close());
+    .catch((err) => console.log(err));
+  // .finally(() => db.close());
 };
 
 export const deleteOneDB = async (name, query = {}, options = {}) => {
-  await db.connect();
+  // await db.connect();
   return db
     .db("wordle-bot")
     .collection(name)
     .findOneAndDelete(query, options)
-    .finally(() => db.close());
+    .catch((err) => console.log(err));
+  // .finally(() => db.close());
 };
 
 export const updateOneDB = async (
@@ -78,12 +84,13 @@ export const updateOneDB = async (
   update = {},
   options = {}
 ) => {
-  await db.connect();
+  // await db.connect();
   return db
     .db("wordle-bot")
     .collection(name)
     .findOneAndUpdate(query, update, options)
-    .finally(() => db.close());
+    .catch((err) => console.log(err));
+  // .finally(() => db.close());
 };
 
 export const getWordleNumber = async () => {
@@ -91,12 +98,13 @@ export const getWordleNumber = async () => {
 };
 
 export const deleteAllDB = async (name) => {
-  await db.connect();
+  // await db.connect();
   return db
     .db("wordle-bot")
     .collection(name)
     .deleteMany({})
-    .finally(() => db.close());
+    .catch((err) => console.log(err));
+  // .finally(() => db.close());
 };
 
 export const updateOverall = async (user_id, guild_id, wordle) => {
