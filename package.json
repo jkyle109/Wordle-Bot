@@ -1,0 +1,35 @@
+{
+  "name": "wordle-bot",
+  "version": "1.0.0",
+  "description": "Discord bot to keep track of your server's wordle addicts.",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --ignore data.json app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jkyle109/Wordle-Bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jkyle109/Wordle-Bot/issues"
+  },
+  "homepage": "https://github.com/jkyle109/Wordle-Bot#readme",
+  "devDependencies": {
+    "concurrently": "^7.1.0",
+    "dotenv": "^16.0.0",
+    "nodemon": "^2.0.16",
+    "quick.db": "^7.1.3"
+  },
+  "dependencies": {
+    "discord-interactions": "^3.2.0",
+    "express": "^4.18.1",
+    "mongodb": "^4.5.0",
+    "node-fetch": "^3.2.4",
+    "tweetnacl": "^1.0.3",
+    "ws": "^8.6.0"
+  }
+}
