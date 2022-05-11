@@ -65,10 +65,10 @@ export const initWebSocket = async () => {
     let seq = state.seq;
     let session_id = state.session_id;
     if (!seq || !session_id) {
-      // console.log("connect on start");
+      console.log("connect on start");
       connect();
     } else {
-      // console.log("resume on start");
+      console.log("resume on start");
       resume(seq, session_id);
     }
   });
