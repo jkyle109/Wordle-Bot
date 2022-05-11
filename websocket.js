@@ -74,7 +74,7 @@ export const initWebSocket = async () => {
   });
 };
 
-export const handleOPCode = (event, seq, op, data) => {
+export const handleOPCode = async (event, seq, op, data) => {
   switch (op) {
     case OperationCode.DISPATCH:
       console.log("An event was dispatched.");
@@ -86,7 +86,10 @@ export const handleOPCode = (event, seq, op, data) => {
 
     case OperationCode.RECONNECT:
       console.log("Discord wants us to try to reconnect.");
-      resume();
+      let state = await getOneDB("misc", { type: "state" });
+      let seq = state.seq;
+      let session_id = state.session_id;
+      resume(seq, session_id);
       break;
 
     case OperationCode.INVALID_SESSION:
@@ -196,11 +199,11 @@ export const handleInteractions = async (req, res) => {
 
   if (type === InteractionType.APPLICATION_COMMAND) {
     if (name == "leaderboard") {
+      return res.send({
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: startLeaderboardMessage(),
+      });
     }
-    return res.send({
-      type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-      data: startLeaderboardMessage(),
-    });
   }
 
   if (type === InteractionType.MESSAGE_COMPONENT) {
