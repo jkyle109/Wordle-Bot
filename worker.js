@@ -1,6 +1,6 @@
 import concurrently from "concurrently";
 
-concurrently(
+const { result } = concurrently(
   [
     // Commands to run
     { command: "node app.js", name: "wordle-bot" },
@@ -11,7 +11,8 @@ concurrently(
     killOthers: ["failure", "success"],
     restartTries: 3,
   }
-).then(
+);
+result.then(
   function onSuccess(exitInfo) {
     console.log("\n========\nSuccess\n========\n");
     // for (exitData in exitInfo) {
