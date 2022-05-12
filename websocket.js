@@ -199,11 +199,12 @@ export const handleInteractions = async (req, res) => {
 
   if (type === InteractionType.APPLICATION_COMMAND) {
     if (name == "leaderboard") {
-      return res.send({
-        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-        data: startLeaderboardMessage(),
-      });
     }
+    console.log("interaction name:", name);
+    return res.send({
+      type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+      data: startLeaderboardMessage(),
+    });
   }
 
   if (type === InteractionType.MESSAGE_COMPONENT) {
