@@ -199,7 +199,6 @@ export const handleInteractions = async (req, res) => {
 
   if (type === InteractionType.APPLICATION_COMMAND) {
     if (data.name == "leaderboard") {
-      console.log("interaction name:", req.body);
       return res.send({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: startLeaderboardMessage(),
