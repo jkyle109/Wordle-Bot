@@ -54,7 +54,7 @@ export const wordleScoreMessage = (wordle, message, color = 8008342) => {
 export const startLeaderboardMessage = (content = "", color = 8008342) => {
   const message = {};
   message.content = content;
-  message.embeds = [];
+  message.embeds = null;
   message.components = makeMessageButtons();
   return message;
 };

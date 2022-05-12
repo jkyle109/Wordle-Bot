@@ -19,9 +19,9 @@ app.use(
   express.json({ verify: VerifyDiscordRequest(process.env.WORDLE_PUBLIC_KEY) })
 );
 
-// app.get("/", () => {
-//   console.log("hi");
-// });
+app.get("/", (req, res) => {
+  res.send("hello world");
+});
 
 app.post("/interactions", handleInteractions);
 
