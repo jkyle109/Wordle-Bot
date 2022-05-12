@@ -191,20 +191,20 @@ const heartbeat = (interval) => {
 };
 
 export const handleInteractions = async (req, res) => {
-  let { name, type, id, data, message, guild_id } = req.body;
+  let { type, id, data, message, guild_id } = req.body;
 
   if (type === InteractionType.PING) {
     return res.send({ type: InteractionResponseType.PONG });
   }
 
   if (type === InteractionType.APPLICATION_COMMAND) {
-    if (name == "leaderboard") {
+    if (data.name == "leaderboard") {
+      console.log("interaction name:", req.body);
+      return res.send({
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: startLeaderboardMessage(),
+      });
     }
-    console.log("interaction name:", req.body);
-    return res.send({
-      type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-      data: startLeaderboardMessage(),
-    });
   }
 
   if (type === InteractionType.MESSAGE_COMPONENT) {
