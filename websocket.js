@@ -144,7 +144,7 @@ export const handleEvents = async (t, s, op, d) => {
 
       if (wordle && wordle.number == (await getWordleNumber())) {
         let date = new Date();
-        date.setHours(23, 59, 0, 0);
+        date.setHours(27, 59, 0, 0);
 
         // Update daily
         let isExisting = await updateOneDB(
